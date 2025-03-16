@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Booking Details</h2>
+<p><strong>Customer:</strong> {{ object.customer.name }}</p>
+<p><strong>Vehicle:</strong> {{ object.vehicle }}</p>
+<p><strong>Service Date:</strong> {{ object.service_date }}</p>
+<p><strong>Return Date:</strong> {{ object.return_date }}</p>
+<a href="{% url 'booking_edit' object.pk %}" class="btn btn-warning">Edit</a>
+<a href="{% url 'booking_delete' object.pk %}" class="btn btn-danger">Delete</a>
+<a href="{% url 'booking_list' %}" class="btn btn-secondary">Back to List</a>
+{% endblock %}

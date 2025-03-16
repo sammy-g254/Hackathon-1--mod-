@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container text-center">
+    <h1 class="my-4">Welcome to SPEEDLINER</h1>
+    <p class="lead">FAST, SAFE, SECURE</p>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card shadow-sm p-3 d-flex flex-column h-100">
+                <h5>Customers</h5>
+                <p>Manage customers' details.</p>
+                <a href="{% url 'customer_list' %}" class="btn btn-primary mt-auto">View Customers</a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm p-3 d-flex flex-column h-100">
+                <h5>Bookings</h5>
+                <p>Manage transportation bookings.</p>
+                <a href="{% url 'booking_list' %}" class="btn btn-success mt-auto">View Bookings</a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm p-3 d-flex flex-column h-100">
+                <h5>Vehicles</h5>
+                <p>Check available vehicles.</p>
+                <a href="{% url 'vehicle_list' %}" class="btn btn-warning mt-auto">View Vehicles</a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm p-3 d-flex flex-column h-100">
+                <h5>Payments</h5>
+                <p>Manage payment records.</p>
+                <a href="{% url 'payment_list' %}" class="btn btn-danger mt-auto">View Payments</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

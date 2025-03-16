@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Vehicles</h2>
+
+<!-- Add Vehicle Button -->
+<a href="{% url 'vehicle_add' %}" class="btn btn-primary mb-3">Add Vehicle</a>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number Plate</th>
+      <th>Capacity</th>
+      <th>Availability</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for vehicle in object_list %}
+    <tr {% if not vehicle.available %}style="background-color: #ffcccc;"{% endif %}>
+      <td>{{ vehicle.name }}</td>
+      <td>{{ vehicle.number_plate }}</td>
+      <td>{{ vehicle.capacity }}</td>
+      <td>
+        {% if vehicle.available %}
+          <span class="badge badge-success">Available</span>
+        {% else %}
+          <span class="badge badge-danger">Unavailable</span>
+        {% endif %}
+      </td>
+      <td>
+        <a href="{% url 'vehicle_edit' vehicle.pk %}" class="btn btn-warning btn-sm">Edit</a>
+        <a href="{% url 'vehicle_delete' vehicle.pk %}" class="btn btn-danger btn-sm">Delete</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="5">No vehicles found.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
