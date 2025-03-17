@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Delete Booking</h2>
+<h2 class="text-primary">Delete Booking</h2>
 <p>Are you sure you want to delete the booking for {{ object.customer.name }} on {{ object.service_date }}?</p>
 <form method="post">
   {% csrf_token %}

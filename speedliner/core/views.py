@@ -31,7 +31,6 @@ class CustomerDeleteView(DeleteView):
 
 
 # BOOKING VIEWS
-
 class BookingListView(ListView):
     model = Booking
     template_name = 'booking_list.html'
@@ -39,7 +38,6 @@ class BookingListView(ListView):
 class BookingDetailView(DetailView):
     model = Booking
     template_name = 'booking_detail.html'
-
 class BookingCreateView(CreateView):
     model = Booking
     form_class = BookingForm
@@ -57,6 +55,12 @@ class BookingDeleteView(DeleteView):
     template_name = 'booking_confirm_delete.html'
     success_url = reverse_lazy('booking_list')
 
+    def delete(self, request, *args, **kwargs):
+        # Restore vehicle availability when booking is deleted
+        booking = self.get_object()
+        booking.vehicle.available = True
+        booking.vehicle.save(update_fields=['available'])
+        return super().delete(request, *args, **kwargs)
 
 
 # VEHICLE VIEWS

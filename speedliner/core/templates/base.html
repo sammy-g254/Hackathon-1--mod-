@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SPEEDLINER - FAST, SAFE, SECURE</title>
-  
+
   <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicons/apple-touch-icon.png' %}">
   <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicons/favicon-32x32.png' %}">
@@ -20,10 +20,46 @@
   <!-- Rhea Template CSS -->
   <link rel="stylesheet" href="{% static 'css/theme.css' %}">
   <link rel="stylesheet" href="{% static 'vendors/plyr/plyr.css' %}">
+
+  <style>
+    
+    body {
+      background: url("{% static 'img/gallery/bg_2.jpg' %}") no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+     }
+    
+    /* Navbar Fade Effect */
+    .navbar-custom {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+        transition: background 0.5s ease-in-out;
+    }
+
+    /* Footer Fade Effect */
+    .footer-custom {
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+        color: white;
+        padding: 15px 0;
+    }
+
+    /* Body Background */
+    body {
+        background-color: black;
+        color: white;
+    }
+
+    /* Ensure Footer Stays at the Bottom */
+    .footer-custom {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+  </style>
 </head>
 <body>
+
   <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg fixed-top py-3 backdrop" data-navbar-on-scroll="data-navbar-on-scroll">
+  <nav class="navbar navbar-expand-lg fixed-top navbar-dark navbar-custom">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center fw-bold fs-2" href="/">
         <img class="d-inline-block align-top img-fluid" src="{% static 'img/gallery/logo-icon.png' %}" alt="" width="50" />
@@ -45,15 +81,16 @@
   </nav>
 
   <!-- Main Content -->
-  <main class="main container my-6" id="top">
+  <main class="main container my-6" id="top" >
     {% block content %}
     {% endblock %}
   </main>
 
   <!-- Footer -->
-  <footer class="footer bg-primary py-3" style="position: fixed; bottom: 0; width: 100%;">
-    <div class="container text-center">
-      <span class="text-white">&copyFAST/SAFE/SECURE</span>
+  <footer class="footer footer-custom text-center">
+    <div class="container">
+      <span class="text-white">&copy; Speedliner Ltd</span><br>
+      <span class="text-white">FAST, SAFE, SECURE</span>
     </div>
   </footer>
 

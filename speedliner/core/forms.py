@@ -20,10 +20,13 @@ class BookingForm(forms.ModelForm):
             'return_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
         }
 
-        def __init__(self, *args, **kwargs):
-            super().__init__(*args, **kwargs)
-            # Only show available vehicles
-            self.fields['vehicle'].queryset = Vehicle.objects.filter(is_available=True)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance.pk:
+            self.fields['vehicle'].queryset = Vehicle.objects.filter(available=True) | Vehicle.objects.filter(pk=self.instance.vehicle.pk)
+        else:
+            self.fields['vehicle'].queryset = Vehicle.objects.filter(available=True)
+
 
 class PaymentForm(forms.ModelForm):
     class Meta:

@@ -10,32 +10,31 @@ class Customer(models.Model):
 
 class Vehicle(models.Model):
     name = models.CharField(max_length=200)
-    number_plate = models.CharField(max_length=20, unique=True)  # New field for vehicle number plate
+    number_plate = models.CharField(max_length=20, unique=True)
     capacity = models.PositiveIntegerField()
     available = models.BooleanField(default=True)
-    
+
     def __str__(self):
-        # This string will be used in the Booking form's drop-down
         return f"{self.name} ({self.number_plate})"
 
 class Booking(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="bookings")
-    vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE, related_name="bookings")
+    customer = models.ForeignKey("Customer", on_delete=models.CASCADE)
+    vehicle = models.ForeignKey("Vehicle", on_delete=models.CASCADE)
     service_date = models.DateField()
     return_date = models.DateField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
-        # Mark vehicle as unavailable when booking is created
-        if self.vehicle.available:
+        # Ensure that the vehicle is marked unavailable when booked
+        if self.pk is None and self.vehicle.available:
             self.vehicle.available = False
-            self.vehicle.save()
+            self.vehicle.save(update_fields=['available'])  # Force save
         super().save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
-        # Restore vehicle availability when booking is deleted
+        # When a booking is deleted, make the vehicle available again
         self.vehicle.available = True
-        self.vehicle.save()
+        self.vehicle.save(update_fields=['available'])
         super().delete(*args, **kwargs)
 
     def __str__(self):
