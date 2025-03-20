@@ -1,33 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Customers</h2>
-<a href="{% url 'customer_add' %}" class="btn btn-primary mb-3">Add Customer</a>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Contact Info</th>
-      <th>Location</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for customer in object_list %}
-    <tr>
-      <td>{{ customer.name }}</td>
-      <td>{{ customer.contact_info }}</td>
-      <td>{{ customer.location }}</td>
-      <td>
-        <a href="{% url 'customer_detail' customer.pk %}" class="btn btn-info btn-sm">View</a>
-        <a href="{% url 'customer_edit' customer.pk %}" class="btn btn-warning btn-sm">Edit</a>
-        <a href="{% url 'customer_delete' customer.pk %}" class="btn btn-danger btn-sm">Delete</a>
-      </td>
-    </tr>
-    {% empty %}
-    <tr>
-      <td colspan="4">No customers found.</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+<div style="background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(240, 240, 240, 0.5)); padding: 20px; border-radius: 10px;">
+  <h2 class="text-center"><strong>CUSTOMERS</strong></h2>
+  <a href="{% url 'customer_add' %}" class="btn btn-primary mb-3">Add Customer</a>
+  <table class="table table-striped">
+    <thead style="color:black;">
+      <tr>
+        <th>Name</th>
+        <th>Contact Info</th>
+        <th>Location</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for customer in object_list %}
+      <tr style="color:black;">
+        <td>{{ customer.name }}</td>
+        <td>{{ customer.contact_info }}</td>
+        <td>{{ customer.location }}</td>
+        <td>
+          <a href="{% url 'customer_detail' customer.pk %}" class="btn btn-info btn-sm">View</a>
+          <a href="{% url 'customer_edit' customer.pk %}" class="btn btn-warning btn-sm">Edit</a>
+          <a href="{% url 'customer_delete' customer.pk %}" class="btn btn-danger btn-sm">Delete</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="4">No customers found.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endblock %}

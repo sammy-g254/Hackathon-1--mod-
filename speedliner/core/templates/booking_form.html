@@ -1,29 +1,28 @@
 {% extends "base.html" %}
-
 {% block content %}
-<div class="container">
-    <h2 class="my-4">Booking Form</h2>
+<div style="background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(240, 240, 240, 0.5)); padding: 20px; border-radius: 10px;">
+    <h2 class="text-center" style="color: black;">Booking Form</h2>
     <form method="post">
         {% csrf_token %}
 
         <div class="form-group">
-            <label for="id_customer">Customer:</label>
+            <label for="id_customer" style="color: black;">Customer:</label>
             {{ form.customer }}
         </div>
 
         <div class="form-group">
-            <label for="id_vehicle">Vehicle:</label>
+            <label for="id_vehicle" style="color: black;">Vehicle:</label>
             {{ form.vehicle }}
         </div>
 
         <div class="form-group">
-            <label for="id_service_date">Service Date:</label>
+            <label for="id_service_date" style="color: black;">Service Date:</label>
             <input type="date" name="service_date" id="id_service_date" class="form-control" style="max-width: 200px; color: black;">
         </div>
 
         <div class="form-group">
-            <label for="id_return_date">Return Date:</label>
-            <input type="date" name="return_date" id="id_return_date" class="form-control" style="max-width: 200px; color: black">
+            <label for="id_return_date" style="color: black;">Return Date:</label>
+            <input type="date" name="return_date" id="id_return_date" class="form-control" style="max-width: 200px; color: black;">
         </div>
 
         <button type="submit" class="btn btn-primary mt-3">Submit Booking</button>

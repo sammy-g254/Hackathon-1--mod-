@@ -32,3 +32,11 @@ class PaymentForm(forms.ModelForm):
     class Meta:
         model = Payment
         fields = ['booking', 'amount']
+        widgets = {
+            'amount': forms.NumberInput(attrs={'class': 'form-control', 'min': '0'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Exclude bookings that already have a payment
+        self.fields['booking'].queryset = Booking.objects.exclude(payments__isnull=False)

@@ -1,32 +1,38 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Payments</h2>
-<a href="{% url 'payment_add' %}" class="btn btn-primary mb-3">Add Payment</a>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Booking</th>
-      <th>Amount</th>
-      <th>Payment Date</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for payment in object_list %}
-    <tr>
-      <td>{{ payment.booking.customer.name }} ({{ payment.booking.service_date }})</td>
-      <td>Ksh. {{ payment.amount }}</td> 
-      <td>{{ payment.payment_date }}</td>
-      <td>
-        <a href="{% url 'payment_edit' payment.pk %}" class="btn btn-warning btn-sm">Edit</a>
-        <a href="{% url 'payment_delete' payment.pk %}" class="btn btn-danger btn-sm">Delete</a>
-      </td>
-    </tr>
-    {% empty %}
-    <tr>
-      <td colspan="4">No payments found.</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+
+<div style="background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(240, 240, 240, 0.5)); padding: 20px; border-radius: 10px;">
+    <h2 class="text-center"><strong>Payments</strong></h2>
+    
+    <a href="{% url 'payment_add' %}" class="btn btn-primary mb-3">Add Payment</a>
+    
+    <table class="table table-striped">
+        <thead>
+            <tr style="color: black;">
+                <th>Booking</th>
+                <th>Amount</th>
+                <th>Payment Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for payment in object_list %}
+            <tr style="color: black;">
+                <td>{{ payment.booking.customer.name }} ({{ payment.booking.service_date }})</td>
+                <td>Ksh. {{ payment.amount }}</td>
+                <td>{{ payment.payment_date }}</td>
+                <td>
+                    <a href="{% url 'payment_edit' payment.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'payment_delete' payment.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" style="color: black;">No payments found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
 {% endblock %}

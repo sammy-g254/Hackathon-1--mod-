@@ -1,35 +1,41 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2 class="text-primary">Bookings</h2>
-<a href="{% url 'booking_add' %}" class="btn btn-primary mb-3">Add Booking</a>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Customer</th>
-      <th>Vehicle</th>
-      <th>Service Date</th>
-      <th>Return Date</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for booking in object_list %}
-    <tr>
-      <td>{{ booking.customer.name }}</td>
-      <td>{{ booking.vehicle }}</td>
-      <td>{{ booking.service_date }}</td>
-      <td>{{ booking.return_date }}</td>
-      <td>
-        <a href="{% url 'booking_detail' booking.pk %}" class="btn btn-info btn-sm">View</a>
-        <a href="{% url 'booking_edit' booking.pk %}" class="btn btn-warning btn-sm">Edit</a>
-        <a href="{% url 'booking_delete' booking.pk %}" class="btn btn-danger btn-sm">Delete</a>
-      </td>
-    </tr>
-    {% empty %}
-    <tr>
-      <td colspan="5">No bookings found.</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+
+<div style="background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(240, 240, 240, 0.5)); padding: 20px; border-radius: 10px;">
+    <h2 class="text-center"><strong>Bookings</strong></h2>
+    
+    <a href="{% url 'booking_add' %}" class="btn btn-primary mb-3">Add Booking</a>
+    
+    <table class="table table-striped">
+        <thead>
+            <tr style="color: black;">
+                <th>Customer</th>
+                <th>Vehicle</th>
+                <th>Service Date</th>
+                <th>Return Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in object_list %}
+            <tr style="color: black;">
+                <td>{{ booking.customer.name }}</td>
+                <td>{{ booking.vehicle }}</td>
+                <td>{{ booking.service_date }}</td>
+                <td>{{ booking.return_date }}</td>
+                <td>
+                    <a href="{% url 'booking_detail' booking.pk %}" class="btn btn-info btn-sm">View</a>
+                    <a href="{% url 'booking_edit' booking.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'booking_delete' booking.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" style="color: black;">No bookings found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
 {% endblock %}
